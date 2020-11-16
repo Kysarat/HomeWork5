@@ -42,9 +42,8 @@ class Advert(ColorizeMixin):
 
 if __name__ == "__main__":
     lesson_str = """{
-        "title": "iPhone X",
-        "price": 100,
-        "location": {
+        "title": "python",
+         "price": 2, "location":{
             "address": "город Самара, улица Мориса Тореза, 50",
             "metro_stations": ["Спортивная", "Гагаринская"]
         }
@@ -54,10 +53,10 @@ if __name__ == "__main__":
     # Вывод через точку
     print(lesson_ad.location.address)
     # Проверка цены
-    # lesson_str = '{"title": "python"}'
-    # lesson = json.loads(lesson_str)
-    # lesson_ad = Advert(lesson)
-    # print(lesson_ad.price)
+    lesson_str = '{"title": "python"}'
+    lesson = json.loads(lesson_str)
+    lesson_ad = Advert(lesson)
+    print(lesson_ad.price)
     # Проверка на изменения цвета через Миксин
     iphone_ad = Advert(lesson)
     print(iphone_ad)
