@@ -1,4 +1,5 @@
 import json
+from keyword import iskeyword
 
 
 class ColorizeMixin:
@@ -22,6 +23,8 @@ class Advert(ColorizeMixin):
     def __init__(self, json_dict: dict):
 
         for key, value in json_dict.items():
+            if iskeyword(key):
+                key += '_'
             if isinstance(value, dict):
                 setattr(self, key, Advert(value))
             else:
@@ -42,8 +45,11 @@ class Advert(ColorizeMixin):
 
 if __name__ == "__main__":
     lesson_str = """{
-        "title": "python",
-         "price": 2, "location":{
+        "title": "iPhone X",
+        "class": "corgi",
+        "break": 23,
+        "price": 100,
+        "location": {
             "address": "город Самара, улица Мориса Тореза, 50",
             "metro_stations": ["Спортивная", "Гагаринская"]
         }
@@ -51,9 +57,9 @@ if __name__ == "__main__":
     lesson = json.loads(lesson_str)
     lesson_ad = Advert(lesson)
     # Вывод через точку
-    print(lesson_ad.location.address)
+    print(lesson_ad.break_)
     # Проверка цены
-    lesson_str = '{"title": "python"}'
+    lesson_str = '{"title": "python", "price": -999}'
     lesson = json.loads(lesson_str)
     lesson_ad = Advert(lesson)
     print(lesson_ad.price)
